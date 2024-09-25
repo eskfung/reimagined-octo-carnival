@@ -1,16 +1,16 @@
-import { defer, LoaderFunctionArgs, TypedDeferredData } from "@remix-run/node";
+import { defer, LoaderFunctionArgs, TypedDeferredData } from '@remix-run/node';
 import {
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
-} from "@remix-run/react";
-import { RootLoaderData } from "~/types/rootLoaderData";
-import { isAuthenticated } from "~/util/isAuthenticated.server";
+} from '@remix-run/react';
+import { RootLoaderData } from '~/types/rootLoaderData';
+import { isAuthenticated } from '~/util/isAuthenticated.server';
 
 export const headers = () => ({
-  "WWW-Authenticate": "Basic",
+  'WWW-Authenticate': 'Basic',
 });
 
 export async function loader({
