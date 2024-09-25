@@ -1,4 +1,4 @@
-import type { MetaFunction } from '@netlify/remix-runtime';
+import type { MetaFunction } from '@remix-run/node';
 import styles from './styles.module.css';
 
 export const meta: MetaFunction = () => {

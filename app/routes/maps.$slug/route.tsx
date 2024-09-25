@@ -1,4 +1,4 @@
-import { defer, type LoaderFunction } from '@netlify/remix-runtime';
+import { defer, type LoaderFunction } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import { useRootLoaderData } from '~/hooks/useRootLoaderData';
 
