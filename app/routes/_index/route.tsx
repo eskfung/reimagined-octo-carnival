@@ -1,15 +1,16 @@
-import type { MetaFunction } from "@netlify/remix-runtime";
+import type { MetaFunction } from '@netlify/remix-runtime';
+import styles from './styles.module.css';
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
+    { title: 'New Remix App' },
+    { name: 'description', content: 'Welcome to Remix!' },
   ];
 };
 
 export default function Index() {
   return (
-    <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.8" }}>
+    <main className={styles.main}>
       <h1>Welcome to Remix</h1>
       <ul>
         <li>
@@ -36,6 +37,6 @@ export default function Index() {
           </a>
         </li>
       </ul>
-    </div>
+    </main>
   );
 }
