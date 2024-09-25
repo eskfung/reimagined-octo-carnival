@@ -6,6 +6,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from '@remix-run/react';
+import { fetchFromEnv } from '~/services/env.server';
 import { RootLoaderData } from '~/types/rootLoaderData';
 import { isAuthenticated } from '~/util/isAuthenticated.server';
 
@@ -16,13 +17,17 @@ export const headers = () => ({
 export async function loader({
   request,
 }: LoaderFunctionArgs): Promise<TypedDeferredData<RootLoaderData>> {
-  if (!isAuthenticated(request)) {
-    return defer({ authenticated: false }, { status: 401 });
-  }
-
-  return defer({
-    authenticated: true,
-  });
+  return defer(
+    {
+      authenticated: isAuthenticated(request),
+      env: {
+        googleMapsApiKey: fetchFromEnv('GOOGLE_MAPS_API_KEY'),
+      },
+    },
+    {
+      status: isAuthenticated(request) ? 200 : 401,
+    }
+  );
 }
 
 export default function App() {

@@ -5,4 +5,7 @@ import { netlifyPlugin } from '@netlify/remix-adapter/plugin';
 
 export default defineConfig({
   plugins: [remix(), netlifyPlugin(), tsconfigPaths()],
+  ssr: {
+    noExternal: ['@googlemaps/js-api-loader'],
+  },
 });
