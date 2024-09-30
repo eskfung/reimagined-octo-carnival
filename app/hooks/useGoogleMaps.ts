@@ -1,7 +1,8 @@
 import { Loader } from '@googlemaps/js-api-loader';
 import { useEffect } from 'react';
+import type { LatLng } from '~/types/latLng';
 
-export function useGoogleMaps(apiKey: string) {
+export function useGoogleMaps(apiKey: string, mapCenter?: LatLng | null) {
   useEffect(() => {
     (async function () {
       try {
@@ -11,10 +12,10 @@ export function useGoogleMaps(apiKey: string) {
           version: 'weekly',
         }).importLibrary('maps');
 
-        new Map(document.getElementById('map'), {
+        new Map(document.getElementById('map')!, {
           center: {
-            lat: 0,
-            lng: 0,
+            lat: mapCenter?.latitude ?? 0,
+            lng: mapCenter?.longitude ?? 0,
           },
           zoom: 4,
         });
@@ -22,5 +23,5 @@ export function useGoogleMaps(apiKey: string) {
         console.log('::useGoogleMaps failed to load', JSON.stringify(e));
       }
     })();
-  }, [apiKey]);
+  }, [apiKey, mapCenter]);
 }
