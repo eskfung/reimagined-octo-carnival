@@ -1,11 +1,15 @@
+import { PlaceDetail } from '~/types/place';
+
 const API_KEY = process.env.GOOGLE_PLACES_API_KEY ?? '';
 
-const fieldMask = ['id', 'displayName', 'formattedAddress'];
+const fieldMask = ['id', 'displayName', 'formattedAddress', 'location'];
 
 /**
  * @see https://developers.google.com/maps/documentation/places/web-service/place-details
  */
-export const placeDetail = async (placeId: string) => {
+export const placeDetail = async (
+  placeId: string
+): Promise<PlaceDetail | null> => {
   const res = await fetch(
     `https://places.googleapis.com/v1/places/${placeId}`,
     {
