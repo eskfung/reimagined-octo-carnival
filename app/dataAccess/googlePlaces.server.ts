@@ -1,5 +1,6 @@
 import { PlaceDetail } from '~/types/place';
 
+const ORIGIN = process.env.ORIGIN ?? '';
 const API_KEY = process.env.GOOGLE_PLACES_API_KEY ?? '';
 
 const fieldMask = ['id', 'displayName', 'formattedAddress', 'location'];
@@ -14,6 +15,7 @@ export const placeDetail = async (
     `https://places.googleapis.com/v1/places/${placeId}`,
     {
       headers: {
+        Referer: ORIGIN,
         'X-Goog-Api-Key': API_KEY,
         'X-Goog-FieldMask': fieldMask.join(','),
       },
